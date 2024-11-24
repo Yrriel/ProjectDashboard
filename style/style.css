@@ -29,9 +29,7 @@
 
     height: 150px;
     border-radius: 60px;
-    animation: picpic ;
-    animation-duration: 1000ms;
-    filter: invert(10%) sepia(86%) saturate(6971%) hue-rotate(343deg) brightness(86%) contrast(99%);
+    /* filter: invert(10%) sepia(86%) saturate(6971%) hue-rotate(343deg) brightness(86%) contrast(99%); */
   }
 
   @keyframes picpic {
@@ -53,6 +51,36 @@
       height: 150px;
     }
   } 
+  /*  */
+
+  @keyframes picpic2 {
+    0%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    50%{
+        filter: invert(4%) sepia(78%) saturate(5601%) hue-rotate(269deg) brightness(105%) contrast(121%);
+      transform: translateY(-5vh);
+      height: 40vh;
+    }
+
+    100%{
+      filter: invert(42%) sepia(12%) saturate(2342%) hue-rotate(354deg) brightness(97%) contrast(104%);
+      transform: translateY(0);
+      height: 150px;
+    }
+  } 
+  .color-login{
+    animation: picpic forwards;
+    animation-duration: 1000ms;
+  }
+
+  .color-reg{
+    animation: picpic2 forwards;
+    animation-duration: 1000ms;
+  }
 
   .wrapper{
     /* background: #b85b49; */

@@ -49,14 +49,23 @@ body{
 }
 
 .header .button-profile{
-  border-radius: 50%;
+  /* border-radius: 50%; */
   padding: 2px;
-  border: solid 1px #333;
-  height: 40px;
+  /* border: solid 1px #333; */
+  height: 20px;
 }
 
 .button-profile-href{
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: underline rgba(250, 235, 215, 0.63);
+  transition: text-decoration .5s;
+}
+
+.button-profile-href:hover{
+  text-decoration: underline;
 }
 
 .dash-nav{
@@ -109,6 +118,10 @@ body{
   align-items: center;
 }
 
+.message-alert-container p{
+  margin: 20px;
+}
+
 .message-alert{
   background-color: #1F1F1F;
   border-radius: 10px 50px 10px 50px;
@@ -122,6 +135,8 @@ body{
   font-style: normal;
   color: antiquewhite;
 }
+
+
 
 .message-alert h1, .message-alert h2, .message-alert p,.message-alert em, .message-alert span{
   color: antiquewhite;
@@ -138,12 +153,33 @@ body{
   
 }
 
+/* ---------------------------------------- */
+
+
+.fade-this-animation{
+  animation: fading 1s linear forwards;
+}
+
+@keyframes fading{
+  0%{
+    opacity: 100%;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
+
+/* ---------------------------------------- */
+
 .choices ul{
   display: flex;
   text-decoration: none;
 }
 
 .icons-size{
+  top: 0;
   border-radius: 30px;
   width: 150px;
   height: 150px;
@@ -153,8 +189,46 @@ body{
   margin: 10px;
   list-style-type: none;
   justify-content: center;
-  background-color: antiquewhite;
+  background-color: rgba(250, 235, 215, 0.63);
+  transition: background-color .2s, transform .2s;
   /* background-color: aqua; */
+}
+
+.icons-working{
+  transition: background-color .2s, transform .2s;
+}
+
+.icons-disabled{
+  transition: background-color .2s, color .2s;
+}
+
+.icons-working:hover{
+  background-color: antiquewhite;
+  transform: translateY(-20px);
+}
+
+.icons-disabled:hover{
+  background-color: rgb(163, 59, 59);
+  color: white;
+  animation: nope .2s linear;
+}
+
+@keyframes nope {
+  0%{
+    transform: translateX(0px);
+  }
+  25%{
+    transform: translateX(10px);
+  }
+  50%{
+    transform: translateX(-10px);
+  }
+  75%{
+    transform: translateX(10px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
 }
 
 .center-this{
@@ -179,4 +253,114 @@ body{
   text-align: center;
   margin-top: auto;
   width: 100%;
+}
+
+/* ----------------Saerch BAr--------------------- */
+.searchbar-container *{
+  color: white;
+}
+
+.searchbar-container input{
+  color: #000000;
+  margin-left: 10px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 50px;
+  background: #d1d1d1;
+}
+
+.searchbar-container input:focus{
+  outline: none;
+}
+
+/* ----------------PHP TABLE--------------------- */
+
+.table-container{
+  background-color: #212529;
+  /* border-radius: 10px 50px 10px 50px; */
+  border-radius: 10px;
+  padding: 10px;
+  width: 600px;
+  height: 400px;
+
+  font-family: "Inconsolata", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: antiquewhite;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table tr td{
+  /* border-bottom: solid 1px #595B5E; */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.even-color{
+  background-color: #292D31;
+}
+
+table tr th{
+  border-bottom: solid 1px #595B5E;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#rows-table:hover{
+  background: #363a3f;
+  cursor: pointer;
+}
+
+.pagehere *{
+  color: white;
+}
+
+.pagehere{
+  border-top: solid 1px #595B5E;
+  padding-top: 20px;
+}
+
+.page-info{
+  padding-left: 20px;
+  font-size: 15px;
+}
+
+.pagination a{
+  /* border: solid 1px #ebebeb; */
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.pagination a:hover{
+  background: #363a3f;
+  cursor: pointer;
+}
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 7px;
+}
+
+.active{
+  border-radius: 10px;
+  background-color: #363a3f;
+  border: none;
 }
