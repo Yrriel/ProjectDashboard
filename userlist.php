@@ -57,6 +57,7 @@
                 <div class="page-info">
                     <?php 
                         if(!isset($_GET['page-nr'])){
+                            $_GET['page-nr'] = 1;
                             $page = 1;
                         }else{
                             $page = $_GET['page-nr'];
