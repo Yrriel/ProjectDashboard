@@ -24,7 +24,29 @@ if (isset($_GET['page-nr'])){
     $start = $page * $rowsPerPage;
 }
 
+// echo'
+//     <script>
+//         alert("clicked on username : '.$numOfRows.'");
+//         window.location.href="userlist.php";
+//     </script>';
+//     exit();
+
 
 $result = $conn->query("SELECT * FROM `login` LIMIT $start,$rowsPerPage");
 
+if(isset($_GET['searchbar'])){
+    $searchthis = strval($_GET['searchbar'])."%";
+    $records = $conn->query("SELECT * FROM `login` WHERE `user_name` LIKE '$searchthis'");
+    $numOfRows = $records->num_rows;
+    //calculating the number of rows each pages.
+    $pages = ceil($numOfRows / $rowsPerPage);
+    if($pageVisible > $pages) $pageVisible = $pages;
+    // echo'
+    // <script>
+    //     alert("clicked on username : '.$pages.'");
+    //     window.location.href="userlist.php";
+    // </script>';
+    // exit();
+    $result = $conn->query("SELECT * FROM `login` WHERE `user_name` LIKE '$searchthis' LIMIT $start,$rowsPerPage");
+}
 ?>

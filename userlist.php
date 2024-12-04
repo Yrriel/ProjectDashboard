@@ -33,9 +33,9 @@
     </div>
     <div class="message-alert-container">
         <div class="table-container">
-            <div class="searchbar-container">
-                <p>Search: <input type="text" placeholder="Username, Email"></p>
-            </div>
+            <form class="searchbar-container">
+                <p>Search: <input type="text" placeholder="Username, Email" name="searchbar" value="<?php echo isset($_GET['searchbar']) ? htmlspecialchars($_GET['searchbar'], ENT_QUOTES) : '';?>"></p>
+            </form>
             <table class="php-table">
                 <tr>
                     <th>Username</th>
@@ -67,13 +67,20 @@
                 </div>
                 <div class="pagination">
                     <!-- first page -->
-                    <a href="?page-nr=1">First</a>
+                     <?php if(isset($_GET['searchbar'])){?>
+                        <a href="?searchbar=<?php echo $_GET['searchbar']?>&page-nr=1">First</a>
+                    <?php } else{?>
+                        <a href="?page-nr=1">First</a>
+                    <?php }?>
 
                     <!-- previous page -->
-                     <?php 
-                        if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){ ?>
+
+                    <?php if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){ 
+                        if(isset($_GET['searchbar'])){?>
+                            <a href="?searchbar=<?php echo $_GET['searchbar']?>&page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a>
+                        <?php } else{ ?>
                             <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a>
-                        <?php }
+                        <?php } }
                         else{
                         ?>
                             <a href="">Previous</a>
@@ -81,23 +88,7 @@
 
                     <!-- output the page numbers -->
                     <div class="page-numbers">
-                    <!-- if ( $pages <= 5 )
-                    {
-                    echo all 
-                    }
 
-                    if($pages <= $pageVisible)?>
-                                    <a href="?page-nr= echo $i ?>"> echo $i ?></a> ;
-
-                    if ( $_GET['page-nr'] > 3 && $_GET['page-nr'] < $pages-1 ) {
-                    print ($_GET['page-nr'] - 2 + $count)
-                    }
-                    if( $_GET['page-nr'] < 3 ){
-                    print 1 + $count
-                    }
-                    if( $_GET['page-nr'] => $pages-1 ){
-                    print $pages-4 + $count
-                    } -->
                         <?php 
                             for($i = 1; $i <= $pageVisible; $i++){
                                 
@@ -114,20 +105,32 @@
 
                     <!-- next page -->
                     <?php 
-                        if(!isset($_GET['page-nr'])){ ?>
-                            <a href="?page-nr=2">Next</a>
-                        
+                    
+                        if(!isset($_GET['page-nr'])){ 
+                            if(isset($_GET['searchbar'])){ ?>
+                                <a href="?searchbar=<?php echo $_GET['searchbar']?>&page-nr=2">Next</a>
+                            <?php } else{?>
+                                <a href="?page-nr=2">Next</a>
+                            <?php }?>
                      <?php }else{
                         if($_GET['page-nr'] >= $pages){  ?>
                             <a href="">Next</a>
                         
 
-                    <?php }else{ ?>
-                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>">Next</a>
+                    <?php }else{
+                        if(isset($_GET['searchbar'])){ ?>
+                                <a href="?searchbar=<?php echo $_GET['searchbar']?>&page-nr=<?php echo $_GET['page-nr'] + 1 ?>">Next</a>
+                            <?php } else{?>
+                                <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>">Next</a>
+                            <?php }?>
                     <?php } } ?> 
 
                     <!-- last page -->
-                    <a href="?page-nr=<?php echo $pages?>">Last</a>
+                    <?php if(isset($_GET['searchbar'])){ ?>
+                                <a href="?searchbar=<?php echo $_GET['searchbar']?>&page-nr=<?php echo $pages?>">Last</a>
+                            <?php } else{?>
+                                <a href="?page-nr=<?php echo $pages?>">Last</a>
+                            <?php }?>
                 </div>
             </div>
         </div>
