@@ -38,8 +38,8 @@
             </form>
             <table class="php-table">
                 <tr>
-                    <th>Username</th>
-                    <th>Admin Status</th>
+                    <th>Name</th>
+                    <th>Fingerprint Status</th>
                 </tr>
                 <?php 
                 $count = 0;
@@ -47,6 +47,7 @@
 
                     <tr onclick="window.location='http://localhost/ProjectDashboard/editUser.php?email=<?php echo $row["email"] ?>';" id="rows-table"  <?php if ($count % 2 == 0) echo 'class="even-color"';?>>
                     <input type="hidden" name="username" value=<?php echo $row['user_name'];?>>
+                    <!-- lists specific columns -->
                         <td><?php echo $row['user_name'];?></td>
                         <td><?php echo $row['is_admin'];?></td>
                     </tr>
@@ -140,6 +141,5 @@
         let links = document.querySelectorAll('.page<?php echo $_GET['page-nr']?>');
         links[0].classList.add("active");
      </script>                   
-    <script src="AnimationTransitiontoPage.js"></script>
 </body>
 </html>
