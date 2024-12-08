@@ -1,11 +1,11 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-require 'config.php';
+// require 'vendor/autoload.php';
+// require 'config.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $access_token = md5(uniqid().rand(1000000, 9999999));
 
     // validate login authentication
-    $queryEmail = "SELECT * FROM login WHERE email='$email'";
+    $queryEmail = "SELECT * FROM `tablelistowner` WHERE email='$email'";
     $resultEmail = $conn->query($queryEmail);
 
     $mysqlitime = date('Y-m-d H:i:s');
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // valid address
         echo '<script>
                     alert("Your email : '.$email.' is not valid. please provide a valid email");
-                    window.location.href="../index.php";
+                    window.location.href="register.html";
                 </script>';
         exit();
     }
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($resultEmail->num_rows == 1){
         echo '<script>
                     alert("email is already taken. select another email");
-                    window.location.href="../index.php";
+                    window.location.href="register.html";
                 </script>';
         exit();
     }
@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(strlen($password) < 6){
         echo '<script>
                     alert("Password is too short. provide atleast 6 letters");
-                    window.location.href="../index.php";
+                    window.location.href="register.html";
                 </script>';
         exit();
     }
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $conn->query("INSERT INTO `tablelistowner`(`UID`, `email`, `password`, `firstName`, `lastName`) VALUES ('NOT VERIFIED','$email','$password','$firstName','$lastName')");
         echo '<script>
                     alert("Account registered! Please check your email.");
-                    window.location.href="../index.php";
+                    window.location.href="login.html";
                 </script>';
         exit();
 
@@ -93,14 +93,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //     mysqli_query($conn, $querylogin_checkusername);
         //     echo '<script>
         //             alert("Account registered! Please check your email.");
-        //             window.location.href="../index.php";
+        //             window.location.href="register.html";
         //         </script>';
         // exit();
         // }
         // else{
         //     echo '<script>
         //             alert("Oops! Something went wrong. Please try again.");
-        //             window.location.href="../index.php";
+        //             window.location.href="register.html";
         //         </script>';
         // exit();
         // }
