@@ -12,7 +12,7 @@ $pageVisible = 5;
 $pageMiddle = ceil($pageVisible / 2 ) ;
 
 //get the total number of rows
-$records = $conn->query("SELECT * FROM `login`");
+$records = $conn->query("SELECT * FROM `tablelistfingerprintenrolled`");
 $numOfRows = $records->num_rows;
 
 //calculating the number of rows each pages.
@@ -32,11 +32,11 @@ if (isset($_GET['page-nr'])){
 //     exit();
 
 
-$result = $conn->query("SELECT * FROM `login` LIMIT $start,$rowsPerPage");
+$result = $conn->query("SELECT * FROM `tablelistfingerprintenrolled` LIMIT $start,$rowsPerPage");
 
 if(isset($_GET['searchbar'])){
     $searchthis = strval($_GET['searchbar'])."%";
-    $records = $conn->query("SELECT * FROM `login` WHERE `user_name` LIKE '$searchthis'");
+    $records = $conn->query("SELECT * FROM `tablelistfingerprintenrolled` WHERE `email` LIKE '$searchthis'");
     $numOfRows = $records->num_rows;
     //calculating the number of rows each pages.
     $pages = ceil($numOfRows / $rowsPerPage);
@@ -47,6 +47,6 @@ if(isset($_GET['searchbar'])){
     //     window.location.href="userlist.php";
     // </script>';
     // exit();
-    $result = $conn->query("SELECT * FROM `login` WHERE `user_name` LIKE '$searchthis' LIMIT $start,$rowsPerPage");
+    $result = $conn->query("SELECT * FROM `tablelistfingerprintenrolled` WHERE `email` LIKE '$searchthis' LIMIT $start,$rowsPerPage");
 }
 ?>

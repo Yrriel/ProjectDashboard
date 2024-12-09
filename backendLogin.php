@@ -23,10 +23,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </script>';
         exit();
     }
-    
+
     //is user verified?
-    $verificationCheck = $result['UID'];
-    if($verificationCheck == "NOT VERIFIED"){
+    $RESULTARRAY = $result->fetch_array(MYSQLI_ASSOC);
+    if($RESULTARRAY['UID'] == "NOT VERIFIED"){
         echo '<script>
                     alert("This email is not verified yet. Please check your email.");
                     window.location.href="login.html";
@@ -34,22 +34,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
 
-    if($resultusername->num_rows == 1 && $result->num_rows == 1){
+    if($result->num_rows == 1 && $RESULTARRAY['password'] == $password){
         //login success
 
-        $dataUser = $result['email'];
+        $dataUser = $RESULTARRAY['email'];
         $_SESSION['email'] = $dataUser;
         echo '<script>
-                    alert("Debug Mode echo: attempt #'.$loginattempts.'. Time : '.$mysqlitime.'");
+                    alert("Debug Mode echo: Session check'.$_SESSION['email'].'");
                     window.location.href="login.html";
                 </script>';
-        header("Location:dashboard.html");
+        header("Location:dashboard.php");
         exit();
     }
     else{
+        $dbuserpass = $result->fetch_array(MYSQLI_ASSOC);
         //login failed
                 echo '<script>
-                    alert("Debug Mode echo: attempt #'.$loginattempts.'. Time : '.$mysqlitime.'");
+                    alert("Debug Mode echo: compare :'.$RESULTARRAY['password'].'. to this : '.$password.'");
                     window.location.href="login.html";
                 </script>';
             exit();

@@ -46,10 +46,10 @@
                 while($row = $result->fetch_assoc()){ ?>
 
                     <tr onclick="window.location='http://localhost/ProjectDashboard/editUser.php?email=<?php echo $row["email"] ?>';" id="rows-table"  <?php if ($count % 2 == 0) echo 'class="even-color"';?>>
-                    <input type="hidden" name="username" value=<?php echo $row['user_name'];?>>
+                    <input type="hidden" name="username" value=<?php echo $row['name'];?>>
                     <!-- lists specific columns -->
-                        <td><?php echo $row['user_name'];?></td>
-                        <td><?php echo $row['is_admin'];?></td>
+                        <td><?php echo $row['indexFingerprint'];?></td>
+                        <td><?php echo $row['name'];?></td>
                     </tr>
 
                 <?php $count++; }?>

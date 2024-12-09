@@ -1,3 +1,9 @@
+<?php
+
+// $_SESSION['email'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +51,5 @@
             <a class="icons-size row2 icons-disabled" href="#"><div class="center-this"><img src="src/svg/button-security.svg" alt=""></div><p>Security Settings</p></a>
         </div>
     <!-- </div> -->
-<script src="AnimationTransitiontoPage.js"></script>
 </body>
 </html>
