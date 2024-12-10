@@ -13,8 +13,8 @@
     <div class="headerwrapper">
         <div class="header">
             <nav class="dash-nav">
-                <a class="button-menu-href" href=""><img class="button-menu" src="src/svg/menu.svg" alt=""></a>
-                <a class="button-profile-href" href="login.html">logout<img class="button-profile" src="src/svg/profile-icon.svg" alt=""></a>
+                <a class="button-menu-href" href="dashboard.php"><img class="button-menu" src="src/svg/icon-homeicon.svg" alt=""></a>
+                <a class="button-profile-href" href="login.html"><img class="button-profile" src="src/svg/profile-icon.svg" alt="">logout</a>
             </nav>
         </div>
         <div class="section">
@@ -23,8 +23,8 @@
                     <span class="profile-container-span">
                         <img class="profile-picture" src="src/img/profile-sample.jpeg" alt="">
                         <span class="profile-text-box">
-                            <h1>Your Users</h1>
-                            <p>Add, Edit, or Delete!</p>
+                            <h1>User list</h1>
+                            <p>Click on any row to edit or delete.</p>
                         </span>
                     </span>
                 </div>
@@ -38,14 +38,14 @@
             </form>
             <table class="php-table">
                 <tr>
+                    <th>Fingerpint Index</th>
                     <th>Name</th>
-                    <th>Fingerprint Status</th>
                 </tr>
                 <?php 
                 $count = 0;
                 while($row = $result->fetch_assoc()){ ?>
 
-                    <tr onclick="window.location='http://localhost/ProjectDashboard/editUser.php?email=<?php echo $row["email"] ?>';" id="rows-table"  <?php if ($count % 2 == 0) echo 'class="even-color"';?>>
+                    <tr onclick="window.location='http://localhost/ProjectDashboard/editUser.php?email=<?php echo $row["name"] ?>';" id="rows-table"  <?php if ($count % 2 == 0) echo 'class="even-color"';?>>
                     <input type="hidden" name="username" value=<?php echo $row['name'];?>>
                     <!-- lists specific columns -->
                         <td><?php echo $row['indexFingerprint'];?></td>

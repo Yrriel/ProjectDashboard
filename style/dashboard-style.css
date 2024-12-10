@@ -110,7 +110,6 @@ body{
 
 .message-alert-container{
   padding: 20px;
-  /* background: #b5f74b; */
   border-radius: 20px;
   display: flex;
   flex-grow: 1;
@@ -123,11 +122,13 @@ body{
 }
 
 .message-alert{
-  background-color: #1F1F1F;
-  border-radius: 10px 50px 10px 50px;
-  padding: 10px;
-  width: 600px;
-  height: 200px;
+  background-color: #221D38;
+  display: flex;
+  gap: 20px;
+  border-radius: 20px;
+  padding: 20px;
+  width: auto;
+  height: auto;
 
   font-family: "Inconsolata", system-ui;
   font-optical-sizing: auto;
@@ -141,6 +142,49 @@ body{
 .message-alert h1, .message-alert h2, .message-alert p,.message-alert em, .message-alert span{
   color: antiquewhite;
 }
+
+.status-container{
+  background-color: #393453;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.gap-row{}
+
+.device-info{
+  background-color: #6a4191;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.device-online, .doorlock-locked{
+  background-color: #63B64F;
+  padding: 10px;
+  border-radius: 20px;
+}
+.device-offline, .doorlock-unlocked{
+  background-color: #D61F86;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.dashboard-information h2{
+  font-weight: bold;
+}
+
+.icon-device-status{
+  height: 40px;
+  color: #d7abff;
+  filter: invert(71%) sepia(31%) saturate(933%) hue-rotate(212deg) brightness(100%) contrast(101%);
+}
+
+.device-status-container{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  /* background-color: antiquewhite; */
+}
+
 
 .choices{
   display: flex;
@@ -279,7 +323,7 @@ body{
 /* ----------------PHP TABLE--------------------- */
 
 .table-container{
-  background-color: #212529;
+  background-color: #221D38;
   /* border-radius: 10px 50px 10px 50px; */
   border-radius: 10px;
   padding: 10px;
@@ -364,3 +408,6 @@ table tr th{
   background-color: #363a3f;
   border: none;
 }
+
+/* ------------------------- */
+
