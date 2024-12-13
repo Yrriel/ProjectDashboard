@@ -1,7 +1,16 @@
 {
-    "functions": {
-      "api/dashboard.php": {
-        "runtime": "vercel-php@0.7.3"
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/**/*.php",
+        "use": "@vercel/php"
       }
-    }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/api/$1.php"
+      }
+    ]
   }
+  
