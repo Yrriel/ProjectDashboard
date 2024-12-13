@@ -1,12 +1,7 @@
 {
-    "builds": [
-      {
-        "src": "api/dashboard.php",
-        "use": "@vercel/php",
-        "config": {
-          "phpVersion": "8.1"
-        }
+    "functions": {
+      "api/dashboard.php": {
+        "runtime": "vercel-php@0.7.3"
       }
-    ]
+    }
   }
-  
