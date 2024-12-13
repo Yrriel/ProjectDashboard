@@ -1,62 +1,61 @@
 <?php
 
 session_start();
-if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    //initialize connections to database
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Initialize connection to the database
     require_once 'connection.php';
 
-    //retrieve form data
+    // Retrieve form data
     $email = strtolower($_POST['uname']);
-    $password = ($_POST['upass']);
+    $password = $_POST['upass'];
 
-    // validate login authentication
-    $query = "SELECT * FROM `tablelistowner` WHERE `email`='$email'";
-    $result = $conn->query($query);
+    // Validate login authentication using prepared statements
+    $query = "SELECT * FROM tablelistowner WHERE email = :email";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
 
-
-    //is user exist?
-    if($result->num_rows == 0){
+    // Check if the user exists
+    if ($stmt->rowCount() == 0) {
         echo '<script>
-                    alert("User doesn'."'".'t exist. Please register a new account.");
-                    window.location.href="register.html";
-                </script>';
+                alert("User doesn\'t exist. Please register a new account.");
+                window.location.href="register.html";
+              </script>';
         exit();
     }
 
-    //is user verified?
-    $RESULTARRAY = $result->fetch_array(MYSQLI_ASSOC);
-    if($RESULTARRAY['UID'] == "NOT VERIFIED"){
+    // Fetch the user data
+    $resultArray = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Check if the user is verified
+    if ($resultArray['UID'] == "NOT VERIFIED") {
         echo '<script>
-                    alert("This email is not verified yet. Please check your email.");
-                    window.location.href="login.html";
-                </script>';
+                alert("This email is not verified yet. Please check your email.");
+                window.location.href="login.html";
+              </script>';
         exit();
     }
 
-    if($result->num_rows == 1 && $RESULTARRAY['password'] == $password){
-        //login success
-
-        $dataUser = $RESULTARRAY['email'];
-        $_SESSION['email'] = $dataUser;
+    // Verify the password using password_verify
+    if (password_verify($password, $resultArray['password'])) {
+        // Login success
+        $_SESSION['email'] = $resultArray['email'];
         echo '<script>
-                    alert("Debug Mode echo: Session check'.$_SESSION['email'].'");
-                    window.location.href="login.html";
-                </script>';
-        header("Location:dashboard.php");
+                alert("Login successful. Welcome, ' . $_SESSION['email'] . '.");
+                window.location.href="dashboard.php";
+              </script>';
+        exit();
+    } else {
+        // Login failed
+        echo '<script>
+                alert("Incorrect password. Please try again.");
+                window.location.href="login.html";
+              </script>';
         exit();
     }
-    else{
-        $dbuserpass = $result->fetch_array(MYSQLI_ASSOC);
-        //login failed
-                echo '<script>
-                    alert("Debug Mode echo: compare :'.$RESULTARRAY['password'].'. to this : '.$password.'");
-                    window.location.href="login.html";
-                </script>';
-            exit();
-    }
 
-    $conn->close();
-
+    $pdo = null; // Close the connection
 }
 ?>
